@@ -54,7 +54,6 @@ POST http://127.0.0.1:8000/api/v1/users/register?email=2393573104@qq.com&passwor
 users、token    
 
 
-
 # API 2
 User Case2: Adding Government-Issued Credentials
 Actor: Registered User
@@ -89,6 +88,46 @@ POST http://127.0.0.1:8000/api/v1/profile/add-credential?token&credential_type=D
 ○ fail:  
 {  
     "status": "credential_type,credential_image must exist!"  
+}  
+
+**database:**  
+credential    
+
+
+# API 3  
+User Case3: Selective Information Sharing
+Actor: User, Third-party Service
+Description: User shares only their age from their driver’s license with a third-party service.
+Steps:
+1. Third-party service requests age verification
+2. User receives notification of the request
+3. User chooses to share information from their driver’s license
+4. User selects only the “Age” field to share
+5. System generates a temporary, verifiable credential containing only the age
+6. Third-party service receives and verifies the age credential  
+
+**request params:**  
+○	token(token of user)  
+○	service\_id: String (ID of the requesting third-party service)  
+○	info\_field: String (e.g., Age)  
+
+**respond params:**
+○	verification\_token: String (Temporary token for the third-party to verify the information)  
+○	status: String (Success or error message)  
+
+**request：** 
+POST http://127.0.0.1:8000/api/v1/profile/share-create  
+
+**respond：**  
+○ success：   
+{  
+    "verification_token": "079517a38770039662c1006252ae7d50",  
+    "status": "success"  
+}  
+
+○ fail:  
+{  
+    "status": "token must exist!"  
 }  
 
 **database:**  
