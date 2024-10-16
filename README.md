@@ -34,8 +34,8 @@ Steps:
 ○      status: String (Success or error message)  
 
 **request：** 
-POST http://127.0.0.1:8000/api/v1/users/register
-<img width="442" alt="截屏2024-10-15 18 41 00" src="https://github.com/user-attachments/assets/a686d1e0-3db9-410b-94c2-86903f6bd1f1">
+POST http://127.0.0.1:8000/api/v1/users/register  
+<img width="442" alt="截屏2024-10-15 18 41 00" src="https://github.com/user-attachments/assets/a686d1e0-3db9-410b-94c2-86903f6bd1f1">  
 
 
 **respond：**  
@@ -78,8 +78,8 @@ Steps:
 ○	status: String (Success or error message)  
 
 **request：** 
-POST http://127.0.0.1:8000/api/v1/profile/add-credential
-<img width="533" alt="截屏2024-10-15 18 40 38" src="https://github.com/user-attachments/assets/f33aa2a4-1fc0-4477-b660-2e08a8229647">
+POST http://127.0.0.1:8000/api/v1/profile/add-credential  
+<img width="533" alt="截屏2024-10-15 18 40 38" src="https://github.com/user-attachments/assets/f33aa2a4-1fc0-4477-b660-2e08a8229647">  
 
 
 **respond：**  
