@@ -49,3 +49,5 @@ respond：
 {  
     "status": "the email exists!"  
 }  
+
+database: users、token  
