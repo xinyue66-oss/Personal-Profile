@@ -173,10 +173,51 @@ POST http://127.0.0.1:8000/api/v1/profile/emergency-access
 }  
 
 ○ fail:  
-{。
+{  
     "status": "token must exist!"  
 }  
 
 **database:**  
 app_emergencyaccess   
+
+
+# API 5 
+User Case5: Emergency Information Access
+Actor: Emergency Responder, System
+Description: An emergency responder accesses critical health information during an emergency.
+Steps:
+1. Emergency responder locates user’s device
+2. Responder initiates “Break the Glass” procedure
+3. Responder provides their identification and reason for access
+4. System verifies the responder’s credentials
+5. System grants access to predefined emergency information
+6. System logs the access event and notifies user’s emergency contacts  
+
+**request params:**  
+○	responder_id: String (ID of the emergency responder)  
+○	reason: String (Reason for access request)  
+○	email: String (email of the user)  
+
+**respond params:**  
+○	emergency_info: Object (Predefined emergency information)  
+○	status: String (Success or error message)  
+
+**request：**  
+POST http://127.0.0.1:8000/api/v1/profile/emergency-access/grant  
+<img width="453" alt="截屏2024-10-15 18 59 24" src="https://github.com/user-attachments/assets/6a382349-9f24-438f-ad82-c86972fc27e6">  
+
+**respond：**  
+○ success：   
+{  
+    "emergency_info": "{HOME:Burnaby 4024}",  
+    "status": "success"  
+}  
+
+○ fail:  
+{  
+    "status": "responder_id,reason,email must exist!"  
+}  
+
+**database:**  
+app_emergencyaccesslog   
 
