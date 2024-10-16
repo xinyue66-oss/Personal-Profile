@@ -19,7 +19,7 @@ Steps:
 5. User is prompted to start adding information to their profile
 6. System creates a unique, portable digital container for the user’s profile
 
-##request params:  
+*request params:*  
 ○      name: String (User's full name)  
 ○      email: String (User's email)  
 ○      handle: String (User's handle)  
@@ -27,16 +27,16 @@ Steps:
 ○      biometrics: String (Encrypted)  
 ○      public-private key pair: String:(Encrypted)  
 
-##respond params:  
+*respond params:*
 ○      user\_id: String (Unique ID for the user)  
 ○      token(token of user)  
 ○      profile\_id: String (ID of the created profile)  
 ○      status: String (Success or error message)  
 
-##request：  
+*request： * 
 http://127.0.0.1:8000/api/v1/users/register?email=2393573104@qq.com&password=123&name=xinyue  
 
-##respond：  
+*respond：*  
 ○ success：  
 {  
     "user_id": 2,  
@@ -50,4 +50,4 @@ http://127.0.0.1:8000/api/v1/users/register?email=2393573104@qq.com&password=123
     "status": "the email exists!"  
 }  
 
-##database: users、token  
+*database: users、token  *
