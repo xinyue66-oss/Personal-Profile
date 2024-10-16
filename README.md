@@ -117,6 +117,8 @@ Steps:
 
 **request：** 
 POST http://127.0.0.1:8000/api/v1/profile/share-create  
+<img width="539" alt="截屏2024-10-15 18 39 28" src="https://github.com/user-attachments/assets/c6807b18-67be-4dc2-b336-5af357b30bca">  
+
 
 **respond：**  
 ○ success：   
