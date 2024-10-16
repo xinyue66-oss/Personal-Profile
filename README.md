@@ -53,7 +53,7 @@ POST http://127.0.0.1:8000/api/v1/users/register
 }  
 
 **database:**
-users、token    
+app_users、app_token      
 
 
 # API 2
@@ -95,7 +95,7 @@ POST http://127.0.0.1:8000/api/v1/profile/add-credential
 }  
 
 **database:**  
-credential    
+app_credential      
 
 
 # API 3  
@@ -137,5 +137,46 @@ POST http://127.0.0.1:8000/api/v1/profile/share-create
 }  
 
 **database:**  
-credential  
+app_sharedinfo    
+
+
+# API 4  
+User Case4: Setting Up Emergency Access
+Actor: User
+Description: User configures the “Break the Glass” feature for emergency situations.
+Steps:
+1. User navigates to the “Emergency Access” settings
+2. User selects information to be accessible in emergencies
+3. User defines criteria for emergency access (e.g., unconsciousness)
+4. User adds trusted contacts who can trigger emergency access
+5. System encrypts and stores the emergency information separately
+
+**request params:**  
+○	token(token of user)  
+○	trusted_contacts: Array of Strings (List of trusted contacts)  
+○	emergency_info: Object (Details of information to be accessible)  
+○	criteria: Json(e.g., unconsciousness)  
+
+**respond params:**  
+○	access_id: String (ID of the added emergency\_access)  
+○	status: String (Success or error message)  
+
+**request：**  
+POST http://127.0.0.1:8000/api/v1/profile/emergency-access  
+<img width="534" alt="截屏2024-10-15 18 50 42" src="https://github.com/user-attachments/assets/c9147a52-cd7e-4a78-a8b0-aa6eb053b25a">  
+
+**respond：**  
+○ success：   
+{  
+    "access_id": 1,  
+    "status": "success"  
+}  
+
+○ fail:  
+{。
+    "status": "token must exist!"  
+}  
+
+**database:**  
+app_emergencyaccess   
 
