@@ -34,9 +34,9 @@ Steps:
 ○      status: String (Success or error message)  
 
 **request：** 
-http://127.0.0.1:8000/api/v1/users/register?email=2393573104@qq.com&password=123&name=xinyue  
+POST http://127.0.0.1:8000/api/v1/users/register?email=2393573104@qq.com&password=123&name=xinyue  
 
-**respond：**
+**respond：**  
 ○ success：  
 {  
     "user_id": 2,  
@@ -51,4 +51,46 @@ http://127.0.0.1:8000/api/v1/users/register?email=2393573104@qq.com&password=123
 }  
 
 **database:**
-users、token  
+users、token    
+
+
+
+# API 2
+User Case2: Adding Government-Issued Credentials
+Actor: Registered User
+Description: User adds their driver’s license to their Secure Personal Profile.
+Steps:
+1. User navigates to the “Add Credential” section
+2. User selects “Government ID” and then “Driver’s License”
+3. User is prompted to scan or photograph their physical license
+4. System extracts and verifies the information
+5. User confirms the extracted data
+6. System securely stores the credential in the user’s profile
+
+**request params:**  
+○	token(token of user)  
+○	credential_type: String (e.g., Driver's License)  
+○	credential_image: File (Scanned image or photo of the credential)  
+
+**respond params:**
+○○	credential_id: String (ID of the added credential)    
+○	status: String (Success or error message)  
+
+**request：** 
+POST http://127.0.0.1:8000/api/v1/profile/add-credential?token&credential_type=Driver's License&credential_image  
+
+**respond：**  
+○ success：   
+{  
+    "credential_id": 1,  
+    "status": "success"  
+}  
+
+○ fail:  
+{  
+    "status": "credential_type,credential_image must exist!"  
+}  
+
+**database:**  
+credential  
+
