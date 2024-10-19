@@ -236,73 +236,71 @@ N.B. Here, the use of the term “rings” is from the Operating Systems languag
 be more helpful.
 
 **request params:**  
-○	token(token of user)
-○	assigned_data: Object (Configuration of access levels for various data)
-○	ring_name
+○	token(token of user)  
+○	assigned_data: Object (Configuration of access levels for various data)  
+○	ring_name  
 
 **respond params:**  
-○	ring_id(ID of the privilege\_rings)
-○	status: String (Success or error message)
+○	ring_id(ID of the privilege\_rings)  
+○	status: String (Success or error message)  
 
 **request：**  
-POST http://127.0.0.1:8000/api/v1/profile/privilege-rings
-
-<img width="552" alt="截屏2024-10-19 06 35 23" src="https://github.com/user-attachments/assets/6edf176e-4fa4-415b-9af9-bb03cc8ac083">
+POST http://127.0.0.1:8000/api/v1/profile/privilege-rings  
+<img width="552" alt="截屏2024-10-19 06 35 23" src="https://github.com/user-attachments/assets/6edf176e-4fa4-415b-9af9-bb03cc8ac083">  
 
 **respond：**  
 ○ success：   
-{
-    "ring_id": 1,
-    "status": "success"
-}
+{  
+    "ring_id": 1,  
+    "status": "success"  
+}  
 
-○ fail:  
-{
-    "status": "token has expired!"
-}
+○ fail:    
+{  
+    "status": "token has expired!"  
+}  
 
-**database:**  
-app_privilegerings 
+**database:**   
+app_privilegerings  
 
 
 # API 7 
-User Case7: Updating Personal Information
-Actor: User
-Description: User updates their home address in their profile, all references are updated.
-Steps:
-1. User navigates to the “Personal Information” section
-2. User updates their home address
-3. All documents containing references to the Profile are automatically current
-4. This implies the Documents may have a field saying “ home address”
-5. This Document may retrieve and expose the address only for the Role it was intended for
-N.B. This is a massive Use Case, and probably the most important. With one change, all Government
-and Commercial databases pointing to this profile are updated.
+User Case7: Updating Personal Information 
+Actor: User  
+Description: User updates their home address in their profile, all references are updated.  
+Steps:  
+1. User navigates to the “Personal Information” section  
+2. User updates their home address  
+3. All documents containing references to the Profile are automatically current  
+4. This implies the Documents may have a field saying “ home address”  
+5. This Document may retrieve and expose the address only for the Role it was intended for  
+N.B. This is a massive Use Case, and probably the most important. With one change, all Government  
+and Commercial databases pointing to this profile are updated.  
 
-**request params:**  
-○	token(token of user)
-○	updated_fields: Object (Fields to be updated, e.g., home address)
+**request params:**   
+○	token(token of user)  
+○	updated_fields: Object (Fields to be updated, e.g., home address)  
 
-**respond params:**  
-○	status: String (Success or error message)
+**respond params:**   
+○	status: String (Success or error message)  
 
-**request：**  
-POST http://127.0.0.1:8000/api/v1/profile/update-info
+**request：**   
+POST http://127.0.0.1:8000/api/v1/profile/update-info  
+<img width="546" alt="截屏2024-10-19 06 39 49" src="https://github.com/user-attachments/assets/377d475b-b718-48d5-ad1a-807cf93d3913">  
 
-<img width="546" alt="截屏2024-10-19 06 39 49" src="https://github.com/user-attachments/assets/377d475b-b718-48d5-ad1a-807cf93d3913">
+**respond：**   
+○ success：    
+{   
+    "status": "put required"  
+}  
 
-**respond：**  
-○ success：   
-{
-    "status": "put required"
-}
+○ fail:   
+{  
+    "status": "token has expired!"  
+}  
 
-○ fail:  
-{
-    "status": "token has expired!"
-}
-
-**database:**  
-app_profiles 
+**database:**    
+app_profiles   
 
 
 # API 8 
@@ -318,26 +316,27 @@ Steps:
 6. The permissions may be identified as the set of Roles belonging to the third party services
 
 **request params:**  
-○	token(token of user)
-○	service_id: String (ID of the third-party service)
+○	token(token of user)   
+○	service_id: String (ID of the third-party service)  
 
-**respond params:**  
-○	status: String (Success or error message)
+**respond params:**   
+○	status: String (Success or error message)  
 
-**request：**  
-POST http://127.0.0.1:8000/api/v1/profile/revoke-access
+**request：**    
+POST http://127.0.0.1:8000/api/v1/profile/revoke-access   
+<img width="550" alt="截屏2024-10-19 06 46 13" src="https://github.com/user-attachments/assets/4655c5bd-3398-4209-970e-373e3444877b">  
 
-**respond：**  
-○ success：   
+**respond：**    
+○ success：     
 {
-    "status": "delete required"
-}
+    "status": "delete required"  
+}  
 
-○ fail:  
-{
-    "status": "token has expired!"
-}
+○ fail:   
+{  
+    "status": "token has expired!"  
+}  
 
-**database:**  
-app_sharedinfo 
+**database:**   
+app_sharedinfo  
 
