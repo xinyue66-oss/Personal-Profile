@@ -450,7 +450,17 @@ POST http://127.0.0.1:8000/api/v1/profile/export
 **respond：**    
 ○ success：     
 {  
-    "status": "get required"  
+    "exported_data": {  
+        "profile_id": 3,  
+        "user_id": 3,  
+        "data": {  
+            "email": "xhu22@nyit.edu",  
+            "handle": "12"  
+        },  
+        "created_at": "2024-10-19 08:34",  
+        "updated_at": "2024-10-19 09:39"  
+    },  
+    "status": "success"  
 }  
 
 ○ fail:   
