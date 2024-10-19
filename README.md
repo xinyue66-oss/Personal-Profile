@@ -265,15 +265,6 @@ POST http://127.0.0.1:8000/api/v1/profile/privilege-rings
 app_privilegerings 
 
 
-
-
-
-
-
-
-
-
-
 # API 7 
 User Case7: Updating Personal Information
 Actor: User
@@ -296,6 +287,7 @@ and Commercial databases pointing to this profile are updated.
 
 **request：**  
 POST http://127.0.0.1:8000/api/v1/profile/update-info
+
 <img width="546" alt="截屏2024-10-19 06 39 49" src="https://github.com/user-attachments/assets/377d475b-b718-48d5-ad1a-807cf93d3913">
 
 **respond：**  
