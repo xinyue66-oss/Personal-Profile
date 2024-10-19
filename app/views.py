@@ -1,4 +1,6 @@
 import os, hashlib, json
+from warnings import catch_warnings
+
 from django.shortcuts import render
 from django.http import JsonResponse, QueryDict
 from django.utils import timezone
@@ -191,8 +193,8 @@ def privilege_rings(request):
         return JsonResponse({'ring_id':ring_id, 'status':'success'})
 
 def update_info(request):
-    if request.method != 'PUT':
-        return JsonResponse({'status':'put required'})
+    if request.method != 'POST':
+        return JsonResponse({'status':'post required'})
     queryDict = QueryDict(request.body)
     token = queryDict.get('token')
     token = models.Token.objects.filter(token=token).first()
@@ -210,13 +212,13 @@ def update_info(request):
         profile = models.Profiles.objects.filter(user_id=token.user_id).first()
         if not profile:
             return JsonResponse({'status':'this user’s profile does not exsit!'})
-        updated_fields = json.loads(updated_fields)
-        for updated_field in updated_fields:
-            profile = models.Profiles.objects.filter(profile_id=updated_field['profile_id']).first()
-            if profile:
-                profile.data = updated_field['data']
-                profile.save()
-        return JsonResponse({'status':'success'})
+        try:
+            updated_fields = json.loads(updated_fields)
+        except:
+                return JsonResponse({'status':' Json Decode Error!'})
+        profile.data = updated_fields
+        profile.save()
+        return JsonResponse({'status': 'success'})
 
 def revoke_access(request):
     if request.method != 'DELETE':
@@ -291,9 +293,9 @@ def public(request):
         return JsonResponse({'public_profile_link':public_profile_link, 'status':'success'})
 
 def export(request):
-    if request.method != 'GET':
-        return JsonResponse({'status':'get required'})
-    token = request.GET.get('token')
+    if request.method != 'POST':
+        return JsonResponse({'status':'put required'})
+    token = request.POST.get('token')
     token = models.Token.objects.filter(token=token).first()
     if not token:
         return JsonResponse({'status':'token must exist!'})
