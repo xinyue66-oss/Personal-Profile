@@ -424,15 +424,6 @@ POST http://127.0.0.1:8000/api/v1/profile/share-create-link
 app_publicprofiles  
 
 
-
-
-
-
-
-
-
-
-
 # API 11  
 User Case19: Profile Portability and Export
 Actor: User
