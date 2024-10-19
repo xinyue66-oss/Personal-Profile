@@ -246,6 +246,7 @@ be more helpful.
 
 **request：**  
 POST http://127.0.0.1:8000/api/v1/profile/privilege-rings
+
 <img width="552" alt="截屏2024-10-19 06 35 23" src="https://github.com/user-attachments/assets/6edf176e-4fa4-415b-9af9-bb03cc8ac083">
 
 **respond：**  
