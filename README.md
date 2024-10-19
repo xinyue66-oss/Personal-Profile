@@ -340,3 +340,45 @@ POST http://127.0.0.1:8000/api/v1/profile/revoke-access
 **database:**   
 app_sharedinfo  
 
+
+# API 9  
+User Case10: Sharing Health Records with a New Doctor
+Actor: User, Healthcare Provider
+Description: User securely shares relevant health records with a new doctor.
+Steps:
+1. User receives request for health information from new doctor
+2. User accesses their health records in the profile
+3. User selects specific records to share or export (e.g., immunizations, allergies)
+4. User sets an optional expiration date for the shared information
+5. System generates a secure, time-limited access link
+6. User sends the access link to the doctor’s verified email
+   
+**request params:**   
+○	token(token of user)  
+○	health_records_info: Object (User selects specific records to share)  
+○	doctor_email: String (Verified email of the doctor)  
+○	expiration_date: Date (Optional expiration date for access)  
+
+**respond params:**    
+○	access_link: String (Link to access the health records)  
+○	status: String (Success or error message)  
+
+**request：**     
+POST http://127.0.0.1:8000/api/v1/profile/share-create-link     
+<img width="553" alt="截屏2024-10-19 06 52 17" src="https://github.com/user-attachments/assets/ec674799-9e17-40c3-b345-6b3c30f99d3f">   
+
+**respond：**    
+○ success：     
+{
+    "access_link": "2e05ac0128cffc7f3e49f75e31a1f83f",
+    "status": "success"
+}
+
+○ fail:   
+{  
+    "status": "token has expired!"  
+}  
+
+**database:**   
+app_sharehealthrecords  
+
