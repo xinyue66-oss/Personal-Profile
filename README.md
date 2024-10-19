@@ -405,7 +405,7 @@ Steps:
 ○	status: String (Success or error message)  
 
 **request：**     
-POST http://127.0.0.1:8000/api/v1/profile/share-create-link   
+POST http://127.0.0.1:8000/api/v1/profile/public  
 <img width="552" alt="截屏2024-10-19 07 05 20" src="https://github.com/user-attachments/assets/03ca2d20-0a26-4c4e-9e03-c0de3d5feff4">  
 
 **respond：**    
