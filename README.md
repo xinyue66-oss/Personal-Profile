@@ -423,3 +423,51 @@ POST http://127.0.0.1:8000/api/v1/profile/share-create-link
 **database:**   
 app_publicprofiles  
 
+
+
+
+
+
+
+
+
+
+
+# API 11  
+User Case19: Profile Portability and Export
+Actor: User
+Description: User exports their entire profile in a standardized, portable format.
+Steps:
+1. User chooses to export their profile
+2. System offers options for export format (e.g., encrypted file, printable summary)
+3. User selects desired format and initiates export
+4. System packages all profile data, maintaining structure and metadata
+5. User receives the exported profile along with instructions for importing elsewhere
+6. System logs the export event and reminds user about the sensitivity of the exported data
+   
+**request params:**   
+○	token(token of user)   
+
+**respond params:**     
+○	exported_data: (json data of user)  
+○	status: String (Success or error message)    
+
+**request：**     
+POST http://127.0.0.1:8000/api/v1/profile/export  
+<img width="548" alt="截屏2024-10-19 07 08 32" src="https://github.com/user-attachments/assets/824e1a1e-a9a6-48fd-a940-93f8d9c10610">  
+
+**respond：**    
+○ success：     
+{  
+    "status": "get required"  
+}  
+
+○ fail:   
+{
+    "status": "post required"  
+}
+
+**database:**   
+app_exportlogs  
+
+
