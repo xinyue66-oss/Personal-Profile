@@ -285,19 +285,19 @@ and Commercial databases pointing to this profile are updated.
 ○	status: String (Success or error message)  
 
 **request：**   
-POST http://127.0.0.1:8000/api/v1/profile/update-info  
-<img width="546" alt="截屏2024-10-19 06 39 49" src="https://github.com/user-attachments/assets/377d475b-b718-48d5-ad1a-807cf93d3913">  
+POST http://127.0.0.1:8000/api/v1/profile/update-info   
+<img width="556" alt="截屏2024-10-19 07 40 21" src="https://github.com/user-attachments/assets/e1feb09f-f427-49a1-acdc-11c2faef78b3">   
 
 **respond：**   
 ○ success：    
-{   
-    "status": "put required"  
+{  
+    "status": "success"  
 }  
 
 ○ fail:   
-{  
-    "status": "token has expired!"  
-}  
+{
+    "status": " Json Decode Error!"
+}
 
 **database:**    
 app_profiles   
