@@ -255,17 +255,16 @@ def share_create_link(request):
         token.save()
         return JsonResponse({'status':'token has expired!'})
     else:
-        doctor_email = request.POST.get('doctor_email')
-        expiration_date = request.POST.get('expiration_date')
-        health_records_info = request.POST.get('health_records_info')
-        if not doctor_email or not expiration_date or not health_records_info:
-            return JsonResponse({'status':'doctor_email,expiration_date,health_records_info must exist!'})
-        access_link = hashlib.md5(os.urandom(32)).hexdigest()
-        record = models.ShareHealthRecords(user_id=token.user_id,
-                    health_records_info=health_records_info,
-                    access_link=access_link, expiration_date=expiration_date)
+        public_info = request.POST.get('public_info')
+        visibility = request.POST.get('visibility')
+        if not public_info or not visibility:
+            return JsonResponse({'status':'public_info,visibility must exist!'})
+        public_profile_link = hashlib.md5(os.urandom(32)).hexdigest()
+        record = models.PublicProfiles(user_id=token.user_id,
+                    public_info=public_info, visibility=visibility,
+                    public_profile_link=public_profile_link)
         record.save()
-        return JsonResponse({'access_link':access_link, 'status':'success'})
+        return JsonResponse({'public_profile_link':public_profile_link, 'status':'success'})
 
 def public(request):
     if request.method != 'POST':
