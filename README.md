@@ -304,3 +304,40 @@ POST http://127.0.0.1:8000/api/v1/profile/update-info
 **database:**  
 app_profiles 
 
+
+# API 8 
+User Case8: Revoking Access
+Actor: User
+Description: User revokes a third-party service’s access to their information.
+Steps:
+1. User views list of services with access to their information
+2. User selects a service to revoke access
+3. System displays what information the service currently has access to
+4. User confirms revocation of access
+5. System updates access permissions and notifies the third-party service
+6. The permissions may be identified as the set of Roles belonging to the third party services
+
+**request params:**  
+○	token(token of user)
+○	service_id: String (ID of the third-party service)
+
+**respond params:**  
+○	status: String (Success or error message)
+
+**request：**  
+POST http://127.0.0.1:8000/api/v1/profile/revoke-access
+
+**respond：**  
+○ success：   
+{
+    "status": "delete required"
+}
+
+○ fail:  
+{
+    "status": "token has expired!"
+}
+
+**database:**  
+app_sharedinfo 
+
