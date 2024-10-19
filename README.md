@@ -275,36 +275,33 @@ app_privilegerings
 
 
 # API 7 
-User Case6: Configuring Privilege Rings
+User Case7: Updating Personal Information
 Actor: User
-Description: User sets up different levels of information access for their profile.
+Description: User updates their home address in their profile, all references are updated.
 Steps:
-1. User accesses the “Privacy Settings” section
-2. User reviews default privilege rings (public, semi-private, private, restricted)
-3. User assigns different types of information to appropriate rings
-4. User can create custom rings for specific purposes
-5. System applies the configured privacy settings to all stored information
-N.B. Here, the use of the term “rings” is from the Operating Systems language. Other terms may
-be more helpful.
+1. User navigates to the “Personal Information” section
+2. User updates their home address
+3. All documents containing references to the Profile are automatically current
+4. This implies the Documents may have a field saying “ home address”
+5. This Document may retrieve and expose the address only for the Role it was intended for
+N.B. This is a massive Use Case, and probably the most important. With one change, all Government
+and Commercial databases pointing to this profile are updated.
 
 **request params:**  
 ○	token(token of user)
-○	assigned_data: Object (Configuration of access levels for various data)
-○	ring_name
+○	updated_fields: Object (Fields to be updated, e.g., home address)
 
 **respond params:**  
-○	ring_id(ID of the privilege\_rings)
 ○	status: String (Success or error message)
 
 **request：**  
-POST http://127.0.0.1:8000/api/v1/profile/privilege-rings
-<img width="552" alt="截屏2024-10-19 06 35 23" src="https://github.com/user-attachments/assets/6edf176e-4fa4-415b-9af9-bb03cc8ac083">
+POST http://127.0.0.1:8000/api/v1/profile/update-info
+<img width="546" alt="截屏2024-10-19 06 39 49" src="https://github.com/user-attachments/assets/377d475b-b718-48d5-ad1a-807cf93d3913">
 
 **respond：**  
 ○ success：   
 {
-    "ring_id": 1,
-    "status": "success"
+    "status": "put required"
 }
 
 ○ fail:  
@@ -313,5 +310,5 @@ POST http://127.0.0.1:8000/api/v1/profile/privilege-rings
 }
 
 **database:**  
-app_privilegerings 
+app_profiles 
 
