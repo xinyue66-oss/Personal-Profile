@@ -382,3 +382,44 @@ POST http://127.0.0.1:8000/api/v1/profile/share-create-link
 **database:**   
 app_sharehealthrecords  
 
+
+# API 10  
+User Case11: Creating a Public Profile
+Actor: User
+Description: User creates a public-facing profile with limited information.
+Steps:
+1. User navigates to “Public Profile” settings
+2. User selects information to include (e.g., name, profession, public contact method)
+3. User previews how their public profile will appear
+4. User enables or disables public profile visibility
+5. System generates a public link for the profile
+6. User can share their public profile link as needed
+   
+**request params:**   
+○	token(token of user)  
+○	public_info: Object (Fields to be included in the public profile)  
+○	visibility: Boolean (Enable or disable visibility)  
+
+**respond params:**     
+○	public_profile_link: String (URL of the public profile)  
+○	status: String (Success or error message)  
+
+**request：**     
+POST http://127.0.0.1:8000/api/v1/profile/share-create-link   
+<img width="552" alt="截屏2024-10-19 07 05 20" src="https://github.com/user-attachments/assets/03ca2d20-0a26-4c4e-9e03-c0de3d5feff4">  
+
+**respond：**    
+○ success：     
+{
+    "public_profile_link": "aad761da7b58e73a9057fbd6b5d5e9eb",  
+    "status": "success"  
+}
+
+○ fail:   
+{
+    "status": "post required"  
+}
+
+**database:**   
+app_publicprofiles  
+
