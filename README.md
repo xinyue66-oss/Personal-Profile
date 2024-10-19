@@ -262,3 +262,55 @@ POST http://127.0.0.1:8000/api/v1/profile/privilege-rings
 
 **database:**  
 app_privilegerings 
+
+
+
+
+
+
+
+
+
+
+
+# API 7 
+User Case6: Configuring Privilege Rings
+Actor: User
+Description: User sets up different levels of information access for their profile.
+Steps:
+1. User accesses the “Privacy Settings” section
+2. User reviews default privilege rings (public, semi-private, private, restricted)
+3. User assigns different types of information to appropriate rings
+4. User can create custom rings for specific purposes
+5. System applies the configured privacy settings to all stored information
+N.B. Here, the use of the term “rings” is from the Operating Systems language. Other terms may
+be more helpful.
+
+**request params:**  
+○	token(token of user)
+○	assigned_data: Object (Configuration of access levels for various data)
+○	ring_name
+
+**respond params:**  
+○	ring_id(ID of the privilege\_rings)
+○	status: String (Success or error message)
+
+**request：**  
+POST http://127.0.0.1:8000/api/v1/profile/privilege-rings
+<img width="552" alt="截屏2024-10-19 06 35 23" src="https://github.com/user-attachments/assets/6edf176e-4fa4-415b-9af9-bb03cc8ac083">
+
+**respond：**  
+○ success：   
+{
+    "ring_id": 1,
+    "status": "success"
+}
+
+○ fail:  
+{
+    "status": "token has expired!"
+}
+
+**database:**  
+app_privilegerings 
+
