@@ -111,6 +111,9 @@ def get_share(request):
             else:
                 return JsonResponse({'user_data':share.info_field, 'status':'success'})
 
+########################################
+####Defined by Gloria on Oct 07, 2024###
+########################################
 def emergency_access(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -143,6 +146,9 @@ def emergency_access(request):
         access.save()
         return JsonResponse({'access_id':access.access_id, 'status':'success'})
 
+########################################
+####Defined by Gloria on Oct 07, 2024###
+########################################
 def emergency_access_grant(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
