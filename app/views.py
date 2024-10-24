@@ -111,9 +111,12 @@ def get_share(request):
             else:
                 return JsonResponse({'user_data':share.info_field, 'status':'success'})
 
+########################################
+####Defined by Gloria on Oct 05, 2024###
+########################################
 def emergency_access(request):
-    if request.method != 'POST':
-        return JsonResponse({'status':'post required'})
+    if request.method != 'POST':   
+        return JsonResponse({'status':'post required'})   
     token = request.POST.get('token')
     token = models.Token.objects.filter(token=token).first()
     if not token:
