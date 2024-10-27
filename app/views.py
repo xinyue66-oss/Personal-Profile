@@ -6,6 +6,7 @@ from django.http import JsonResponse, QueryDict
 from django.utils import timezone
 from app import models
 
+# Register Function
 def register(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
