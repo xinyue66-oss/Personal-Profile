@@ -144,6 +144,7 @@ def emergency_access(request):
         access.save()
         return JsonResponse({'access_id':access.access_id, 'status':'success'})
 
+#defined by gloria on Oct 7, 2024
 def emergency_access_grant(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
