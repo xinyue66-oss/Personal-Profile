@@ -144,6 +144,7 @@ def emergency_access(request):
         access.save()
         return JsonResponse({'access_id':access.access_id, 'status':'success'})
 
+#defined API 5 by gloria on Sep 25, 2024
 def emergency_access_grant(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -165,6 +166,7 @@ def emergency_access_grant(request):
     emergency_info = access.emergency_info
     return JsonResponse({'emergency_info':emergency_info, 'status':'success'})
 
+#defined API 6 by gloria on Oct 07, 2024
 def privilege_rings(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -193,6 +195,7 @@ def privilege_rings(request):
         ring_id = ring.ring_id
         return JsonResponse({'ring_id':ring_id, 'status':'success'})
 
+#defined API 7 by gloria on Oct 19, 2024
 def update_info(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -221,6 +224,7 @@ def update_info(request):
         profile.save()
         return JsonResponse({'status': 'success'})
 
+#defined API 8 by gloria on Oct 27, 2024
 def revoke_access(request):
     if request.method != 'DELETE':
         return JsonResponse({'status':'delete required'})
