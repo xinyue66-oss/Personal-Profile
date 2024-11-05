@@ -10,22 +10,32 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Load environment variables from .env file
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-kxunt0j7c21n$#h7+b$kr1_1f1^#5-n_@jfx8p_598(y%lh7(r'
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.getenv('DB_NAME', 'api'),
+        "USER": os.getenv('DB_USER', 'root'),
+        "PASSWORD": os.getenv('DB_PASSWORD', 'Taidi1995!'),
+        "HOST": os.getenv('DB_HOST', '127.0.0.1'),
+        "PORT": os.getenv('DB_PORT', '3307'),
+    }
+}
 
 
 # Application definition
@@ -74,16 +84,16 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "api",
-        "USER": "root",
-        "PASSWORD": "Taidi1995!",
-        "HOST": "127.0.0.1",
-        "PORT": "3306",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "api",
+#         "USER": "root",
+#         "PASSWORD": "Taidi1995!",
+#         "HOST": "127.0.0.1",
+#         "PORT": "3307",
+#     }
+# }
 
 
 # Password validation
