@@ -1,10 +1,67 @@
-# Personal-Profile
-Secure Personal Profile Development
+#Personal-Profile
 
-# 项目启动命令：
-python3 manage.py makemigrations  
-python3 manage.py migrate  
-python3 manage.py runserver 0.0.0.0:8000  
+## Overview
+Provide a brief description of your project, its purpose, and its main features.
+
+## Prerequisites
+- Python 3.x
+- Django 5.0.2
+- MySQL or MariaDB
+
+## Installation
+
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/xinyue66-oss/Personal-Profile.git
+    cd Personal-Profile
+    ```
+
+2. **Create and activate a virtual environment:**
+    ```sh
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
+
+3. **Install the dependencies:**
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+4. **Create a `.env` file in the root of your project by copying the `.env.example` file:**
+    ```sh
+    cp .env.example .env
+    ```
+
+5. **Fill in the values for the environment variables in the `.env` file.**
+
+6. **Run database migrations** (use `python3` if `python` does not point to Python 3 on your system):
+    ```sh
+    python manage.py makemigrations  
+    python manage.py migrate
+    ```
+
+7. **Start the development server**:
+    ```sh
+    python manage.py runserver 0.0.0.0:8000
+
+    
+## Usage
+Provide instructions on how to use your project, including any necessary setup or configuration.
+
+## Contributing
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
+
+## License
+Specify the license under which the project is distributed.
+
+## Contact
+Provide contact information or links to relevant profiles (e.g., GitHub, LinkedIn).
+
 
 
 # API 1
