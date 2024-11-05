@@ -1,7 +1,3 @@
-Below is a more complete `README.md` file, detailing professional steps for setting up, connecting to, and accessing data in the `api` database for a Django-based project.
-
----
-
 # **Project Database Setup and Access Guide**
 
 This guide outlines the steps to set up, connect to, and access the `api` database used in this project. Follow these instructions to create and configure the database, verify the setup, and view data in the `app_users` table.
@@ -13,7 +9,6 @@ This guide outlines the steps to set up, connect to, and access the `api` databa
 4. [Viewing Data in Tables](#viewing-data-in-tables)
 5. [Notes and Best Practices](#notes-and-best-practices)
 
----
 
 ### 1. Database Creation and Initial Setup
 
