@@ -1,10 +1,12 @@
-import os, hashlib, json
+import re, os, hashlib, json, string
 from warnings import catch_warnings
 
 from django.shortcuts import render
 from django.http import JsonResponse, QueryDict
 from django.utils import timezone
 from app import models
+
+REGEX_PATTERN = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"
 
 # use case 1: Register Function
 def register(request):
@@ -16,6 +18,10 @@ def register(request):
     password = request.POST.get('password')
     biometrics = request.POST.get('biometrics')
     public_private_key_pair = request.POST.get('public_private_key_pair')
+    if not is_character_secure(password):
+        return JsonResponse({'status': 'password must contain uppercase and lowercase letters, numbers, and special characters!'})
+    if not re.search(REGEX_PATTERN, email):
+        return JsonResponse({'status': 'email format error!'})
     if not email or not password:
         return JsonResponse({'status':'email and password must exist!'})
     user = models.Users.objects.filter(email=email).first()
@@ -35,6 +41,15 @@ def register(request):
 
     return JsonResponse({'user_id':user.user_id, 'token':token.token,
             'profile_id':profile.profile_id, 'status':'success'})
+
+def is_character_secure(password):
+    if (any(char in string.ascii_lowercase for char in password)
+            and any(char in string.ascii_uppercase for char in password)
+            and any(char in string.digits for char in password)
+            and any(char in string.punctuation for char in password)):
+        return True
+    else:
+        return False
 
 def add_credential(request):
     if request.method != 'POST':
