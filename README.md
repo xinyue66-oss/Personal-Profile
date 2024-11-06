@@ -62,7 +62,10 @@ Specify the license under which the project is distributed.
 ## Contact
 Provide contact information or links to relevant profiles (e.g., GitHub, LinkedIn).
 
-
+## Test
+pip install pytest requests
+cd api
+pytest -v test.py
 
 # API 1
 User Case1: User Registration and Profile Creation
