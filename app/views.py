@@ -1,10 +1,13 @@
-import os, hashlib, json
+import re, os, hashlib, json, string
 from warnings import catch_warnings
 
 from django.shortcuts import render
 from django.http import JsonResponse, QueryDict
 from django.utils import timezone
 from app import models
+
+# Verify that the email address is valid
+REGEX_PATTERN = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"
 
 # use case 1: Register Function
 def register(request):
@@ -16,6 +19,10 @@ def register(request):
     password = request.POST.get('password')
     biometrics = request.POST.get('biometrics')
     public_private_key_pair = request.POST.get('public_private_key_pair')
+    if not is_character_secure(password):
+        return JsonResponse({'status': 'password must contain uppercase and lowercase letters, numbers, and special characters!'})
+    if not re.search(REGEX_PATTERN, email):
+        return JsonResponse({'status': 'email format error!'})
     if not email or not password:
         return JsonResponse({'status':'email and password must exist!'})
     user = models.Users.objects.filter(email=email).first()
@@ -36,6 +43,17 @@ def register(request):
     return JsonResponse({'user_id':user.user_id, 'token':token.token,
             'profile_id':profile.profile_id, 'status':'success'})
 
+# Password must contain uppercase and lowercase letters, numbers and special symbols
+def is_character_secure(password):
+    if (any(char in string.ascii_lowercase for char in password)
+            and any(char in string.ascii_uppercase for char in password)
+            and any(char in string.digits for char in password)
+            and any(char in string.punctuation for char in password)):
+        return True
+    else:
+        return False
+
+# use case 2: Add_Credential Function
 def add_credential(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -58,6 +76,7 @@ def add_credential(request):
         credential.save()
         return JsonResponse({'credential_id':credential.credential_id, 'status':'success'})
 
+# use case 3: Add_Credential Function
 def share_create(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -112,6 +131,7 @@ def get_share(request):
             else:
                 return JsonResponse({'user_data':share.info_field, 'status':'success'})
 
+# use case 4: Emergency_Access Function
 def emergency_access(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -144,7 +164,7 @@ def emergency_access(request):
         access.save()
         return JsonResponse({'access_id':access.access_id, 'status':'success'})
 
-#defined API 5 by gloria on Sep 25, 2024
+# use case 5: Emergency_Access_Grant Function
 def emergency_access_grant(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -166,7 +186,7 @@ def emergency_access_grant(request):
     emergency_info = access.emergency_info
     return JsonResponse({'emergency_info':emergency_info, 'status':'success'})
 
-#defined API 6 by gloria on Oct 07, 2024
+# use case 6: Privilege_Rings Function
 def privilege_rings(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -195,7 +215,7 @@ def privilege_rings(request):
         ring_id = ring.ring_id
         return JsonResponse({'ring_id':ring_id, 'status':'success'})
 
-#defined API 7 by gloria on Oct 19, 2024
+# use case 7: Update_Info Function
 def update_info(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -224,7 +244,7 @@ def update_info(request):
         profile.save()
         return JsonResponse({'status': 'success'})
 
-#defined API 8 by gloria on Oct 27, 2024
+# use case 8: Revoke_Access Function
 def revoke_access(request):
     if request.method != 'DELETE':
         return JsonResponse({'status':'delete required'})
@@ -249,6 +269,7 @@ def revoke_access(request):
             record.save()
         return JsonResponse({'status':'success'})
 
+# use case 10: Share_Create_Link Function
 def share_create_link(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -274,6 +295,7 @@ def share_create_link(request):
         record.save()
         return JsonResponse({'access_link':access_link, 'status':'success'})
 
+# use case 11: Public Function
 def public(request):
     if request.method != 'POST':
         return JsonResponse({'status':'post required'})
@@ -298,6 +320,7 @@ def public(request):
         profile.save()
         return JsonResponse({'public_profile_link':public_profile_link, 'status':'success'})
 
+# use case 19: Export Function
 def export(request):
     if request.method != 'POST':
         return JsonResponse({'status':'put required'})

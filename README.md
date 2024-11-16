@@ -62,6 +62,12 @@ Specify the license under which the project is distributed.
 ## Contact
 Provide contact information or links to relevant profiles (e.g., GitHub, LinkedIn).
 
+## Test     
+pip install pytest requests    
+cd api    
+pytest -v test.py    
+<img width="1424" alt="截屏2024-11-05 20 15 30" src="https://github.com/user-attachments/assets/23f02cb6-d0e6-4324-af55-affe6f97e0b9">    
+<img width="1427" alt="截屏2024-11-05 20 15 43" src="https://github.com/user-attachments/assets/76dae440-36dd-4e9a-8936-789e3d469b1f">     
 
 
 # API 1
