@@ -24,7 +24,7 @@ def register(request):
     user = models.Users(name=name, email=email, handle=handle, password_hash=password,
         biometrics=biometrics, public_private_key_pair=public_private_key_pair)
     user.save()
-    token = models.Token(user_id=user.user_id, token=hashlib.md5(os.urandom(32)).hexdigest(),
+    token = models.Token(user_id=user.user_id, token=hashlib.sha256(os.urandom(32)).hexdigest(),
                         expired_at=timezone.now()+timezone.timedelta(days=1))
     token.save()
     data = request.POST.get('data')
@@ -44,7 +44,7 @@ def add_credential(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -66,7 +66,7 @@ def share_create(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -75,7 +75,7 @@ def share_create(request):
         info_field = request.POST.get('info_field')
         if not service_id or not info_field:
             return JsonResponse({'status':'service_id,info_field must exist!'})
-        verification_token = hashlib.md5(os.urandom(32)).hexdigest()
+        verification_token = hashlib.sha256(os.urandom(32)).hexdigest()
         expires_at = timezone.now() + timezone.timedelta(days=7)
         share = models.SharedInfo(user_id=token.user_id, service_id=service_id,
             info_field=info_field, verification_token=verification_token,
@@ -91,7 +91,7 @@ def get_share(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -120,7 +120,7 @@ def emergency_access(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -175,7 +175,7 @@ def privilege_rings(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -205,7 +205,7 @@ def update_info(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -234,7 +234,7 @@ def revoke_access(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -257,7 +257,7 @@ def share_create_link(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -267,7 +267,7 @@ def share_create_link(request):
         health_records_info = request.POST.get('health_records_info')
         if not doctor_email or not expiration_date or not health_records_info:
             return JsonResponse({'status':'doctor_email, expiration_date, health_records_info must exist!'})
-        access_link = hashlib.md5(os.urandom(32)).hexdigest()
+        access_link = hashlib.sha256(os.urandom(32)).hexdigest()
         record = models.ShareHealthRecords(user_id=token.user_id,
                     health_records_info=health_records_info, access_link=access_link,
                     expiration_date=expiration_date)
@@ -282,7 +282,7 @@ def public(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
@@ -291,7 +291,7 @@ def public(request):
         visibility = request.POST.get('visibility')
         if not public_info or not visibility:
             return JsonResponse({'status':'public_info,visibility must exist!'})
-        public_profile_link = hashlib.md5(os.urandom(32)).hexdigest()
+        public_profile_link = hashlib.sha256(os.urandom(32)).hexdigest()
         profile = models.PublicProfiles(user_id=token.user_id,
                 public_info=public_info, visibility=visibility,
                 public_profile_link=public_profile_link)
@@ -306,7 +306,7 @@ def export(request):
     if not token:
         return JsonResponse({'status':'token must exist!'})
     elif token.expired_at <= timezone.now():
-        token.token = hashlib.md5(os.urandom(32)).hexdigest()
+        token.token = hashlib.sha256(os.urandom(32)).hexdigest()
         token.expired_at = timezone.now() + timezone.timedelta(days=1)
         token.save()
         return JsonResponse({'status':'token has expired!'})
