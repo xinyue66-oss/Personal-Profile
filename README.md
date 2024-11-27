@@ -116,7 +116,25 @@ POST http://127.0.0.1:8000/api/v1/users/register
 }  
 
 **database:**
+
 app_users、app_token      
+sequenceDiagram
+    participant User
+    participant Server
+    participant Database
+
+    User->>Server: POST /register (name, email, handle, password, biometrics, public_private_key_pair)
+    Server->>Server: Validate input fields
+    Server->>Database: Check if email exists
+    Database-->>Server: Email not found
+    Server->>Database: Save new user and generate token
+    Database-->>Server: User and token saved
+    Server->>Database: Save user profile
+    Database-->>Server: Profile saved
+    Server-->>User: Return user_id, token, profile_id, status: success
+
+
+
 
 
 # API 2
