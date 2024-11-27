@@ -118,21 +118,10 @@ POST http://127.0.0.1:8000/api/v1/users/register
 **database:**
 
 app_users、app_token      
-sequenceDiagram
-    participant User
-    participant Server
-    participant Database
 
-    User->>Server: POST /register (name, email, handle, password, biometrics, public_private_key_pair)
-    Server->>Server: Validate input fields
-    Server->>Database: Check if email exists
-    Database-->>Server: Email not found
-    Server->>Database: Save new user and generate token
-    Database-->>Server: User and token saved
-    Server->>Database: Save user profile
-    Database-->>Server: Profile saved
-    Server-->>User: Return user_id, token, profile_id, status: success
 
+
+![case1](https://github.com/user-attachments/assets/6d751058-7577-47bb-8b4b-1f99afd8154d)
 
 
 
@@ -178,6 +167,7 @@ POST http://127.0.0.1:8000/api/v1/profile/add-credential
 **database:**  
 app_credential      
 
+![case2](https://github.com/user-attachments/assets/260b3f33-a421-440c-986e-977ec7263212)
 
 # API 3  
 User Case3: Selective Information Sharing
@@ -220,6 +210,7 @@ POST http://127.0.0.1:8000/api/v1/profile/share-create
 **database:**  
 app_sharedinfo    
 
+![case3](https://github.com/user-attachments/assets/f63f13c7-a128-4eb6-9d4c-878d1fbad70e)
 
 # API 4  
 User Case4: Setting Up Emergency Access
@@ -260,6 +251,7 @@ POST http://127.0.0.1:8000/api/v1/profile/emergency-access
 
 **database:**  
 app_emergencyaccess   
+![case4](https://github.com/user-attachments/assets/e46c0ed9-e45c-4968-884a-9ee23356a7e8)
 
 
 # API 5 
@@ -301,6 +293,7 @@ POST http://127.0.0.1:8000/api/v1/profile/emergency-access/grant
 
 **database:**  
 app_emergencyaccesslog   
+![case5](https://github.com/user-attachments/assets/26e638ff-7e83-4774-8a1a-ed9fd444e005)
 
 
 # API 6 
@@ -344,6 +337,7 @@ POST http://127.0.0.1:8000/api/v1/profile/privilege-rings
 **database:**   
 app_privilegerings  
 
+![case6](https://github.com/user-attachments/assets/3dfd6a2f-19f4-46fc-9d02-b996ab376444)
 
 # API 7 
 User Case7: Updating Personal Information 
@@ -383,6 +377,8 @@ POST http://127.0.0.1:8000/api/v1/profile/update-info
 **database:**    
 app_profiles   
 
+![case7](https://github.com/user-attachments/assets/ddd87949-aa45-4b63-b30f-a4f54b754926)
+
 
 # API 8 
 User Case8: Revoking Access
@@ -420,6 +416,7 @@ POST http://127.0.0.1:8000/api/v1/profile/revoke-access
 
 **database:**   
 app_sharedinfo  
+![case8](https://github.com/user-attachments/assets/2c0f5726-966d-435f-a38e-44812e69fba0)
 
 
 # API 9  
@@ -462,6 +459,7 @@ POST http://127.0.0.1:8000/api/v1/profile/share-create-link
 
 **database:**   
 app_sharehealthrecords  
+![case9](https://github.com/user-attachments/assets/555652b9-fd0d-4032-b092-7203b7189424)
 
 
 # API 10  
@@ -503,6 +501,7 @@ POST http://127.0.0.1:8000/api/v1/profile/public
 
 **database:**   
 app_publicprofiles  
+![case11](https://github.com/user-attachments/assets/0fb06e68-da89-406d-bb54-b85c0b630a78)
 
 
 # API 11  
@@ -552,4 +551,4 @@ POST http://127.0.0.1:8000/api/v1/profile/export
 **database:**   
 app_exportlogs  
 
-
+![case19](https://github.com/user-attachments/assets/70037f78-7e34-4c98-8761-984bd4973082)
